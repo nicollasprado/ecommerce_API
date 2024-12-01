@@ -32,7 +32,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // IDENTITY = Os valores ser�o gerados pela coluna de auto incremento do banco, logo, cada registro no
     // banco ser� um novo valor
     @Column(name = "id", unique = true)
-    private long id;
+    private Long id;
 
     @Column(name = "username", length = 100, nullable = false, unique = true)
     // Groups faz com que ao executar, por exemplo, o CreateUser, ele verifique se a entrada � nula ou vazia.

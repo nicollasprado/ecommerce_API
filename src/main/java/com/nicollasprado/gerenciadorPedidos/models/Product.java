@@ -28,7 +28,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
     @EqualsAndHashCode.Include
-    private long id;
+    private Long id;
 
     @Column(name = "name", nullable = false)
     @NotNull(groups = {CreateProduct.class, UpdateProduct.class})
