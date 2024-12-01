@@ -5,7 +5,12 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -13,6 +18,9 @@ import java.util.Objects;
 // Entidade = tabela sql
 @Entity
 @Table(name = User.TABLE_NAME)
+@Getter
+@Setter
+@NoArgsConstructor
 public class User {
     public interface CreateUser {}
     public interface UpdateUser {}
@@ -21,9 +29,10 @@ public class User {
     public static final String TABLE_NAME = "user";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // IDENTITY = Os valores ser�o gerados pela coluna de auto incremento do banco, logo, cada registro no
+    // banco ser� um novo valor
     @Column(name = "id", unique = true)
-    private Long id;
+    private long id;
 
     @Column(name = "username", length = 100, nullable = false, unique = true)
     // Groups faz com que ao executar, por exemplo, o CreateUser, ele verifique se a entrada � nula ou vazia.
@@ -39,52 +48,32 @@ public class User {
     @Size(groups = {CreateUser.class, UpdateUser.class}, min = 8, max = 50)
     private String password;
 
-//    private List<Product> cart = new ArrayList<Product>();
+    @Column(name = "creation_date", insertable = false, updatable = false)
+    @CreatedDate
+    @Temporal(TemporalType.DATE)
+    private LocalDate creationDate;
 
+    @ManyToMany
+    private List<Product> cart = new ArrayList<Product>();
 
-    public User(){}
-
-    public User(Long id, String username, String password) {
-        this.id = id;
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
+        this.creationDate = LocalDate.now();
     }
 
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
+    // Esse override no equals serve para editarmos a forma de comparar se dois objetos instanciados s�o iguais
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(username, user.username) && Objects.equals(password, user.password);
+        return Objects.equals(id, user.id);
     }
 
+    // Geraç�o de c�digo hash para o objeto
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password);
+        return Objects.hash(id);
     }
 }
