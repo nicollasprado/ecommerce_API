@@ -1,5 +1,6 @@
 package com.nicollasprado.gerenciadorPedidos.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -9,8 +10,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDate;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -21,6 +23,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class) // Adiciona listerner de auditing para a entidade (nesse caso utilizado para registrar a data de criacao do user)
 public class User {
     public interface CreateUser {}
     public interface UpdateUser {}
@@ -48,18 +51,23 @@ public class User {
     @Size(groups = {CreateUser.class, UpdateUser.class}, min = 8, max = 50)
     private String password;
 
-    @Column(name = "creation_date", insertable = false, updatable = false)
+    @Column(name = "creation_date", insertable = false, updatable = false, nullable = false)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @CreatedDate
-    @Temporal(TemporalType.DATE)
-    private LocalDate creationDate;
+    private Instant creationDate;
 
     @ManyToMany
+    @JsonIgnore // Para nao retornar o carrinho para o Json
     private List<Product> cart = new ArrayList<Product>();
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.creationDate = LocalDate.now();
+    }
+
+    @PrePersist // Roda ao ser registrado no banco de dados
+    public void createdAt(){
+        this.creationDate = Instant.now();
     }
 
 
