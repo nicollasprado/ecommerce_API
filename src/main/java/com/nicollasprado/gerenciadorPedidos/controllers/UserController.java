@@ -32,6 +32,7 @@ public class UserController {
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<Product>> findAllByUserId(@PathVariable Long userId){
+        this.userService.findById(userId); // Checa se o usuario existe
         List<Product> cart = this.userService.findCartByUserId(userId);
         return ResponseEntity.ok().body(cart);
     }
