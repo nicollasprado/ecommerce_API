@@ -16,7 +16,6 @@ public class GerenciadorPedidosApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GerenciadorPedidosApplication.class, args);
-		User u = new User("aasdasd", "asdasdas");
 //		User u = new User("user", "pass");
 //		Product p = new Product("product", "", 10.0, 5);
 //		UserService uS = new UserService();

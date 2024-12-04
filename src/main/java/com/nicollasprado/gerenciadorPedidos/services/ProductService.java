@@ -23,7 +23,6 @@ public class ProductService {
 
     @Transactional
     public Product create(Product productObj){
-        findById(productObj.getId());
         productObj.setId(null);
         productObj = this.productRepository.save(productObj);
         return productObj;

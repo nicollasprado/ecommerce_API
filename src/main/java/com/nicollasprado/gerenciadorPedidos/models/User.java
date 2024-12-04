@@ -12,7 +12,7 @@ import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -54,7 +54,7 @@ public class User {
     @Column(name = "creation_date", insertable = false, updatable = false, nullable = false)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @CreatedDate
-    private Instant creationDate;
+    private LocalDate creationDate;
 
     @ManyToMany
     @JsonIgnore // Para nao retornar o carrinho para o Json
@@ -67,7 +67,7 @@ public class User {
 
     @PrePersist // Roda ao ser registrado no banco de dados
     public void createdAt(){
-        this.creationDate = Instant.now();
+        this.creationDate = LocalDate.now();
     }
 
 

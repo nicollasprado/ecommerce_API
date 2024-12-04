@@ -1,5 +1,6 @@
 package com.nicollasprado.gerenciadorPedidos.controllers;
 
+import com.nicollasprado.gerenciadorPedidos.models.Product;
 import com.nicollasprado.gerenciadorPedidos.models.User;
 import com.nicollasprado.gerenciadorPedidos.services.UserService;
 import jakarta.validation.Valid;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -24,8 +26,14 @@ public class UserController {
     public ResponseEntity<User> findById(@PathVariable Long id){
         User userObj = this.userService.findById(id);
         // .ok fara retornar "200 OK" para a requisicao
-        // .body sera o corpo da resposta
+        // .body sera o corpo da resposta que contera os valores do nosso objeto
         return ResponseEntity.ok().body(userObj);
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Product>> findAllByUserId(@PathVariable Long userId){
+        List<Product> cart = this.userService.findCartByUserId(userId);
+        return ResponseEntity.ok().body(cart);
     }
 
     @PostMapping

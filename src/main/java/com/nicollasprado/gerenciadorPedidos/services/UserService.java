@@ -1,5 +1,6 @@
 package com.nicollasprado.gerenciadorPedidos.services;
 
+import com.nicollasprado.gerenciadorPedidos.models.Product;
 import com.nicollasprado.gerenciadorPedidos.models.User;
 import com.nicollasprado.gerenciadorPedidos.repositories.ProductRepository;
 import com.nicollasprado.gerenciadorPedidos.repositories.UserRepository;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,6 +26,11 @@ public class UserService {
         Optional<User> userObj = this.userRepository.findById(id);
         return userObj.orElseThrow(() -> new RuntimeException("Usuario nao encontrado! ID: " + id));
         // .orElseThrow serve para caso o objeto n�o exista (Pois colocamos Optional) ele retornar uma exceç�o
+    }
+
+    public List<Product> findCartByUserId(Long userId){
+        List<Product> cart = this.productRepository.findByUser_Id(userId);
+        return cart;
     }
 
     // Para todas mudanças no banco de dados, nao e bom utilizar em find pois ele cria uma conexao com o banco e salva alguns dados, podendo pesar a aplicacao
@@ -47,12 +54,12 @@ public class UserService {
     }
 
     @Transactional
-    public void delete(Long id){
+    public void delete(Long id) {
         findById(id);
         // Ao realizar delete de entidades associadas a outras entidades pode dar erro, logo vamos trata-lo
         try {
             this.userRepository.deleteById(id);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException("Esvazie seu carrinho antes de excluir o usuario");
         }
     }
