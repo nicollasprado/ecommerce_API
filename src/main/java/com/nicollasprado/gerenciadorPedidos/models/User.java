@@ -1,6 +1,5 @@
 package com.nicollasprado.gerenciadorPedidos.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -9,10 +8,9 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -52,22 +50,17 @@ public class User {
     private String password;
 
     @Column(name = "creation_date", insertable = false, updatable = false, nullable = false)
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @CreatedDate
-    private LocalDate creationDate;
+    private LocalDateTime createdAt;
 
-    @ManyToMany
-    @JsonIgnore // Para nao retornar o carrinho para o Json
-    private List<Product> cart = new ArrayList<Product>();
+    // Cascade define como as operaç�es feitas nas entidades repercutirao nas entidades associadas
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Cart cart;
+
+
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-    }
-
-    @PrePersist // Roda ao ser registrado no banco de dados
-    public void createdAt(){
-        this.creationDate = LocalDate.now();
     }
 
 

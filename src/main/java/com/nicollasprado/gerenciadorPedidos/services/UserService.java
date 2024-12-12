@@ -1,7 +1,9 @@
 package com.nicollasprado.gerenciadorPedidos.services;
 
+import com.nicollasprado.gerenciadorPedidos.models.Cart;
 import com.nicollasprado.gerenciadorPedidos.models.Product;
 import com.nicollasprado.gerenciadorPedidos.models.User;
+import com.nicollasprado.gerenciadorPedidos.repositories.CartRepository;
 import com.nicollasprado.gerenciadorPedidos.repositories.ProductRepository;
 import com.nicollasprado.gerenciadorPedidos.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class UserService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private CartRepository cartRepository;
+
     public User findById(Long id){
         // Faz com que n�o entre um dado NULL, retorna apenas vazio
         // Utilizaremos aqui pois caso seja feita uma consulta de um ID que n�o existe no banco ele n�o retornar� erro
@@ -28,19 +33,14 @@ public class UserService {
         // .orElseThrow serve para caso o objeto n�o exista (Pois colocamos Optional) ele retornar uma exceç�o
     }
 
-    public List<Product> findCartByUserId(Long userId){
-        List<Product> cart = this.productRepository.findByUser_Id(userId);
-        return cart;
-    }
-
     // Para todas mudanças no banco de dados, nao e bom utilizar em find pois ele cria uma conexao com o banco e salva alguns dados, podendo pesar a aplicacao
     @Transactional
     public User create(User userObj){
         // Para caso o usuario mande um objeto com id
         userObj.setId(null);
         userObj = this.userRepository.save(userObj);
-        // Para caso o usuario crie a conta apos ja adicionar itens no carrinho
-        this.productRepository.saveAll(userObj.getCart());
+        Cart userCart = new Cart(userObj);
+        this.cartRepository.save(userCart);
         return userObj;
     }
 

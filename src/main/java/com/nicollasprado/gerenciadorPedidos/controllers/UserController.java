@@ -2,6 +2,7 @@ package com.nicollasprado.gerenciadorPedidos.controllers;
 
 import com.nicollasprado.gerenciadorPedidos.models.Product;
 import com.nicollasprado.gerenciadorPedidos.models.User;
+import com.nicollasprado.gerenciadorPedidos.services.CartService;
 import com.nicollasprado.gerenciadorPedidos.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CartService cartService;
+
     @GetMapping("/{id}")
     // ResponseEntity serve para tratar o dado que sera enviado para o frontend
     // @PathVariable define que o id que receberemos em uma chamada GET sera a variavel id
@@ -28,13 +32,6 @@ public class UserController {
         // .ok fara retornar "200 OK" para a requisicao
         // .body sera o corpo da resposta que contera os valores do nosso objeto
         return ResponseEntity.ok().body(userObj);
-    }
-
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Product>> findAllByUserId(@PathVariable Long userId){
-        this.userService.findById(userId); // Checa se o usuario existe
-        List<Product> cart = this.userService.findCartByUserId(userId);
-        return ResponseEntity.ok().body(cart);
     }
 
     @PostMapping

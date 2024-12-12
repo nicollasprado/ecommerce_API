@@ -46,8 +46,8 @@ public class Product {
     @NotNull(groups = {CreateProduct.class, UpdateProduct.class})
     private Long quantity;
 
-    @ManyToMany(mappedBy = "cart")
-    private List<User> usersCarts = new ArrayList<User>();
+    @OneToMany(mappedBy = "product")
+    private List<CartProducts> cartProducts = new ArrayList<CartProducts>();
 
     public Product(String name, String description, Double price, Long quantity){
         this.name = name;
