@@ -58,6 +58,8 @@ public class CartService {
 
     @Transactional
     public void removeProductFromCart(Cart userId, Product productId){
-        this.cartProductsRepository.removeFromCartByIds(userId.getId(), productId.getId());
+        Long transactionId = this.cartProductService.getTransactionId(userId.getId(), productId.getId());
+        CartProducts cartProductsObj = this.cartProductService.findById(transactionId);
+        this.cartProductsRepository.delete(cartProductsObj);
     }
 }
