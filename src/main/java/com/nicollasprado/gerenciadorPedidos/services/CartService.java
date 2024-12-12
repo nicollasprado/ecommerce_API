@@ -46,7 +46,8 @@ public class CartService {
         CartProducts cartProduct;
         if(this.cartProductsRepository.getProductIdByUserIdAndProductId(userId.getId(), productId.getId()) != null){
             // ARRUMAR ESSA QUEST�O DO ID E FORMA DE BUSCA DO OBJETO CART PRODUCT
-            cartProduct = this.cartProductService.findById((userId.getId() + 1L));
+            Long transactionId = this.cartProductService.getTransactionId(userId.getId(), productId.getId());
+            cartProduct = this.cartProductService.findById(transactionId);
             int oldQuantity = cartProduct.getQuantity();
             cartProduct.setQuantity((oldQuantity + quantity));
         }else{

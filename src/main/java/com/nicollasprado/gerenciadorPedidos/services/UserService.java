@@ -1,7 +1,6 @@
 package com.nicollasprado.gerenciadorPedidos.services;
 
 import com.nicollasprado.gerenciadorPedidos.models.Cart;
-import com.nicollasprado.gerenciadorPedidos.models.Product;
 import com.nicollasprado.gerenciadorPedidos.models.User;
 import com.nicollasprado.gerenciadorPedidos.repositories.CartRepository;
 import com.nicollasprado.gerenciadorPedidos.repositories.ProductRepository;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service

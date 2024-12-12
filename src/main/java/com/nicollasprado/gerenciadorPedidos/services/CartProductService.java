@@ -13,8 +13,12 @@ public class CartProductService {
     @Autowired
     private CartProductsRepository cartProductsRepository;
 
-    public CartProducts findById(Long userId){
-        Optional<CartProducts> cartProduct = this.cartProductsRepository.findById(userId);
-        return cartProduct.orElseThrow(()-> new RuntimeException("Usuario nao encontrado!"));
+    public CartProducts findById(Long transactionId){
+        Optional<CartProducts> cartProduct = this.cartProductsRepository.findById(transactionId);
+        return cartProduct.orElseThrow(()-> new RuntimeException("No u_id found"));
+    }
+
+    public Long getTransactionId(Long userId, Long productId){
+        return cartProductsRepository.getTransactionIdByUserIdAndProductId(userId, productId);
     }
 }

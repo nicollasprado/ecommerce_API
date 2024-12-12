@@ -16,7 +16,8 @@ public class CartProducts {
     public static final String TABLE_NAME = "cart_products";
 
     @Id
-    @Column(name = "u_id")
+    @Column(name = "transaction_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @EqualsAndHashCode.Include
     private Long id;
 
@@ -30,12 +31,6 @@ public class CartProducts {
 
     @Column(name = "quantity", nullable = false)
     private int quantity;
-
-
-    @PrePersist
-    public void onPrePersist(){
-        this.id = this.cart.getId() + 1L;
-    }
 
 
     public CartProducts(Cart cart, Product product, int quantity){
