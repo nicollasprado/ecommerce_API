@@ -45,7 +45,6 @@ public class CartService {
     public void addProductToCart(Cart userId, Product productId, int quantity){
         CartProducts cartProduct;
         if(this.cartProductsRepository.getProductIdByUserIdAndProductId(userId.getId(), productId.getId()) != null){
-            // ARRUMAR ESSA QUEST�O DO ID E FORMA DE BUSCA DO OBJETO CART PRODUCT
             Long transactionId = this.cartProductService.getTransactionId(userId.getId(), productId.getId());
             cartProduct = this.cartProductService.findById(transactionId);
             int oldQuantity = cartProduct.getQuantity();
@@ -54,6 +53,23 @@ public class CartService {
             cartProduct = new CartProducts(userId, productId, quantity);
         }
         this.cartProductsRepository.saveAndFlush(cartProduct);
+    }
+
+    @Transactional
+    public void decreaseProductFromCart(Cart userId, Product productId, int quantity){
+        if(this.cartProductsRepository.getProductIdByUserIdAndProductId(userId.getId(), productId.getId()) != null){
+            Long transactionId = this.cartProductService.getTransactionId(userId.getId(), productId.getId());
+            CartProducts cartProduct = this.cartProductService.findById(transactionId);
+            int oldQuantity = cartProduct.getQuantity();
+            if(oldQuantity < quantity){
+                throw new RuntimeException("A quantidade a ser diminuida é menor do que a atual do carrinho");
+            }else {
+                cartProduct.setQuantity((oldQuantity - quantity));
+                this.cartProductsRepository.saveAndFlush(cartProduct);
+            }
+        }else{
+            throw new RuntimeException("O usuario de ID " + userId.getId() + " nao esta com o produto ID " + productId.getId() + " no carrinho!");
+        }
     }
 
     @Transactional

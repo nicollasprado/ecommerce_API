@@ -30,9 +30,15 @@ public class CartController {
         return ResponseEntity.ok().body(productsInCart);
     }
 
-    @PutMapping("/{userId}/{productId}/{productQuantity}")
+    @PutMapping("/adicionar/{userId}/{productId}/{productQuantity}")
     public ResponseEntity<Void> addProductToCart(@PathVariable Long userId, @PathVariable Long productId, @PathVariable int productQuantity){
         this.cartService.addProductToCart(this.cartService.findById(userId), this.productService.findById(productId), productQuantity);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/diminuir/{userId}/{productId}/{quantity}")
+    public ResponseEntity<Void> decreaseProductFromCart(@PathVariable Long userId, @PathVariable Long productId, @PathVariable int quantity){
+        this.cartService.decreaseProductFromCart(this.cartService.findById(userId), this.productService.findById(productId), quantity);
         return ResponseEntity.noContent().build();
     }
 
