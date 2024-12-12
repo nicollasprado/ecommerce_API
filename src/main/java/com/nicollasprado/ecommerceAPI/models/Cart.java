@@ -1,10 +1,9 @@
-package com.nicollasprado.gerenciadorPedidos.models;
+package com.nicollasprado.ecommerceAPI.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.hibernate.annotations.Cascade;
 
 import java.util.ArrayList;
 import java.util.List;

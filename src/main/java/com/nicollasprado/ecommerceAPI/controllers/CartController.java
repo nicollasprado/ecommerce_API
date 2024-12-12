@@ -1,10 +1,9 @@
-package com.nicollasprado.gerenciadorPedidos.controllers;
+package com.nicollasprado.ecommerceAPI.controllers;
 
-import com.nicollasprado.gerenciadorPedidos.models.Product;
-import com.nicollasprado.gerenciadorPedidos.repositories.CartRepository;
-import com.nicollasprado.gerenciadorPedidos.services.CartService;
-import com.nicollasprado.gerenciadorPedidos.services.ProductService;
-import com.nicollasprado.gerenciadorPedidos.services.UserService;
+import com.nicollasprado.ecommerceAPI.models.Product;
+import com.nicollasprado.ecommerceAPI.services.CartService;
+import com.nicollasprado.ecommerceAPI.services.ProductService;
+import com.nicollasprado.ecommerceAPI.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

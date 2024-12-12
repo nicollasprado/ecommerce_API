@@ -1,4 +1,4 @@
-package com.nicollasprado.gerenciadorPedidos.models;
+package com.nicollasprado.ecommerceAPI.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;

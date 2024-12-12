@@ -1,11 +1,10 @@
-package com.nicollasprado.gerenciadorPedidos.models;
+package com.nicollasprado.ecommerceAPI.models;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = CartProducts.TABLE_NAME)

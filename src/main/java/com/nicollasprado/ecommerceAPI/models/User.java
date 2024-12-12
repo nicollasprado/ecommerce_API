@@ -1,4 +1,4 @@
-package com.nicollasprado.gerenciadorPedidos.models;
+package com.nicollasprado.ecommerceAPI.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
@@ -11,8 +11,6 @@ import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 // Entidade = tabela sql

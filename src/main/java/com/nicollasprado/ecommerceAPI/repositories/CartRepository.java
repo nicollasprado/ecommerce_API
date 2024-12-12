@@ -1,9 +1,9 @@
-package com.nicollasprado.gerenciadorPedidos.repositories;
+package com.nicollasprado.ecommerceAPI.repositories;
 
-import com.nicollasprado.gerenciadorPedidos.models.Cart;
-import com.nicollasprado.gerenciadorPedidos.models.CartProducts;
-import com.nicollasprado.gerenciadorPedidos.models.Product;
-import com.nicollasprado.gerenciadorPedidos.models.User;
+import com.nicollasprado.ecommerceAPI.models.Cart;
+import com.nicollasprado.ecommerceAPI.models.CartProducts;
+import com.nicollasprado.ecommerceAPI.models.Product;
+import com.nicollasprado.ecommerceAPI.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

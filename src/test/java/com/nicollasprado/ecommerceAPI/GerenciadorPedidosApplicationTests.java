@@ -1,4 +1,4 @@
-package com.nicollasprado.gerenciadorPedidos;
+package com.nicollasprado.ecommerceAPI;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

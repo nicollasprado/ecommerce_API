@@ -1,7 +1,7 @@
-package com.nicollasprado.gerenciadorPedidos.services;
+package com.nicollasprado.ecommerceAPI.services;
 
-import com.nicollasprado.gerenciadorPedidos.models.Product;
-import com.nicollasprado.gerenciadorPedidos.repositories.ProductRepository;
+import com.nicollasprado.ecommerceAPI.models.Product;
+import com.nicollasprado.ecommerceAPI.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

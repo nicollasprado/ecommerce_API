@@ -1,7 +1,7 @@
-package com.nicollasprado.gerenciadorPedidos.controllers;
+package com.nicollasprado.ecommerceAPI.controllers;
 
-import com.nicollasprado.gerenciadorPedidos.models.Product;
-import com.nicollasprado.gerenciadorPedidos.services.ProductService;
+import com.nicollasprado.ecommerceAPI.models.Product;
+import com.nicollasprado.ecommerceAPI.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

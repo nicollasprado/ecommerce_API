@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.nicollasprado</groupId>
-	<artifactId>gerenciadorPedidos</artifactId>
+	<artifactId>ecommerceAPI</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>gerenciadorPedidos</name>
+	<name>ecommerceAPI</name>
 	<description>Sistema para uma empresa receber e gerenciar pedidos.</description>
 	<url/>
 	<licenses>
