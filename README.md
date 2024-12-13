@@ -6,15 +6,15 @@
 Projeto criado com objetivo de desenvolver minhas habilidades com springboot para criação de apis restful.
 
 ## Pré requisitos
-- Mysql ou Mariadb
-- Java SDK 21.05
+- [Mysql server](https://dev.mysql.com/downloads/mysql/) ou [Mariadb server](https://mariadb.org/download/?t=mariadb&p=mariadb&r=11.6.2)
+- [Java 21](https://www.oracle.com/java/technologies/downloads/#java21)
 
 ## Configurações necessárias
 ### src/main/resources/application.properties
 - Modificar "gerenciadorDB" para o nome do banco de dados criado na sua máquina.
 - Modificar "mariadb" para "mysql" caso use esse banco de dados.
 ```
-spring.datasource.url=jdbc:mariadb://localhost:3306/gerenciadorDB
+spring.datasource.url=jdbc:mariadb://localhost:3306/gerenciadorDB?createDatabaseIfNotExist=true
 ```
 - Modificar "mariadb" para "mysql" caso use esse banco de dados.
 ```
