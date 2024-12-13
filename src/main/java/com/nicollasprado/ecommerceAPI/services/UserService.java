@@ -5,6 +5,7 @@ import com.nicollasprado.ecommerceAPI.models.User;
 import com.nicollasprado.ecommerceAPI.repositories.CartRepository;
 import com.nicollasprado.ecommerceAPI.repositories.ProductRepository;
 import com.nicollasprado.ecommerceAPI.repositories.UserRepository;
+import com.nicollasprado.ecommerceAPI.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class UserService {
         // Faz com que n�o entre um dado NULL, retorna apenas vazio
         // Utilizaremos aqui pois caso seja feita uma consulta de um ID que n�o existe no banco ele n�o retornar� erro
         Optional<User> userObj = this.userRepository.findById(id);
-        return userObj.orElseThrow(() -> new RuntimeException("Usuario nao encontrado! ID: " + id));
+        return userObj.orElseThrow(() -> new ObjectNotFoundException("Usuario nao encontrado! ID: " + id));
         // .orElseThrow serve para caso o objeto n�o exista (Pois colocamos Optional) ele retornar uma exceç�o
     }
 

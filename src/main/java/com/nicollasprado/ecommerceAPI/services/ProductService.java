@@ -2,6 +2,7 @@ package com.nicollasprado.ecommerceAPI.services;
 
 import com.nicollasprado.ecommerceAPI.models.Product;
 import com.nicollasprado.ecommerceAPI.repositories.ProductRepository;
+import com.nicollasprado.ecommerceAPI.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +19,7 @@ public class ProductService {
 
     public Product findById(Long id){
         Optional<Product> productObj = this.productRepository.findById(id);
-        return productObj.orElseThrow(() -> new RuntimeException("Nenhum produto com ID " + id + " foi encontrado!"));
+        return productObj.orElseThrow(() -> new ObjectNotFoundException("Nenhum produto com ID " + id + " foi encontrado!"));
     }
 
     @Transactional

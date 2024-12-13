@@ -6,6 +6,7 @@ import com.nicollasprado.ecommerceAPI.models.Product;
 import com.nicollasprado.ecommerceAPI.models.User;
 import com.nicollasprado.ecommerceAPI.repositories.CartProductsRepository;
 import com.nicollasprado.ecommerceAPI.repositories.CartRepository;
+import com.nicollasprado.ecommerceAPI.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,7 +37,7 @@ public class CartService {
 
     public Cart findById(Long cartId){
         Optional<Cart> cart = this.cartRepository.findById(cartId);
-        return cart.orElseThrow(()-> new RuntimeException("Usuario de ID " + cartId + " nao encontrado"));
+        return cart.orElseThrow(()-> new ObjectNotFoundException("Usuario de ID " + cartId + " nao encontrado"));
     }
 
 
@@ -68,7 +69,7 @@ public class CartService {
                 this.cartProductsRepository.saveAndFlush(cartProduct);
             }
         }else{
-            throw new RuntimeException("O usuario de ID " + userId.getId() + " nao esta com o produto ID " + productId.getId() + " no carrinho!");
+            throw new ObjectNotFoundException("O usuario de ID " + userId.getId() + " nao esta com o produto ID " + productId.getId() + " no carrinho!");
         }
     }
 
