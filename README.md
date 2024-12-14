@@ -5,9 +5,13 @@
 ## Objetivo
 Projeto criado com objetivo de desenvolver minhas habilidades com springboot para criação de apis restful.
 
+<br>
+
 ## Pré requisitos
 - [Mysql server](https://dev.mysql.com/downloads/mysql/) ou [Mariadb server](https://mariadb.org/download/?t=mariadb&p=mariadb&r=11.6.2)
 - [Java 21](https://www.oracle.com/java/technologies/downloads/#java21)
+
+<br>
 
 ## Configurações necessárias
 ### src/main/resources/application.properties
@@ -20,6 +24,8 @@ spring.datasource.url=jdbc:mariadb://localhost:3306/gerenciadorDB?createDatabase
 ```
 spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
 ```
+
+<br>
 
 ## Consumindo a API
 #### Método GET
