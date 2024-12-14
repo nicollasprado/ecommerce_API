@@ -23,32 +23,89 @@ spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
 
 ## Consumindo a API
 #### Método GET
-* localhost:8080/user/{id}
-* Retorna em json o usuário do id informado.
+<table>
+   <tr>
+      <td>localhost:8080/user/{id}</td>
+      <td>Retorna em json o usuário do id informado.</td>
+   </tr>
+   <tr>
+      <td>localhost:8080/product/{id}</td>
+      <td>Retorna em json o produto do id informado.</td>
+   </tr>
+</table>
+
 <br>
-* localhost:8080/product/{id}
-* Retorna em json o produto do id informado.
 
 #### Método POST
-[x] localhost:8080/user
- - Cria um usuário com base no json enviado.
-[x] localhost:8080/product
- - Cria um produto com base no json enviado.
+<table>
+   <tr>
+      <td>localhost:8080/user</td>
+      <td>Cria um usuário com base no json enviado.</td>
+   </tr>
+</table>
+- Exemplo:
+
+```
+{
+    "username": "Nome",
+    "password": "Senha"
+}
+```
+
+ <table>
+   <tr>
+      <td>localhost:8080/product</td>
+      <td>Cria um produto com base no json enviado.</td>
+   </tr>
+</table>
+- Exemplo:
+
+```
+{
+    "name": "Teclado",
+    "description": "Teclado mecanico abnt2",
+    "price": 200.00,
+    "quantity": 6
+}
+```
+
+<br>
 
 ### Método PUT
-[x] localhost:8080/user/{id}
- - Edita o usuário com o id escolhido e com base no json enviado.
-[x] localhost:8080/product/{id}
- - Edita o produto com o id escolhido e com base no json enviado.
-[x] localhost:8080/cart/adicionar/{userId}/{productId}/{productQuantidade}
- - Aumenta a quantidade do produto especificado do carrinho do usuario especificado.
-[x] localhost:8080/cart/diminuir/{userId}/{productId}/{productQuantidade}
- - Diminui a quantidade do produto especificado do carrinho do usuario especificado.
+
+<table>
+   <tr>
+      <td>localhost:8080/user/{id}</td>
+      <td>Edita o usuário com o id escolhido e com base no json enviado.</td>
+   </tr>
+   <tr>
+      <td>localhost:8080/product/{id}</td>
+      <td>Edita o produto com o id escolhido e com base no json enviado.</td>
+   </tr>
+   <tr>
+      <td>localhost:8080/cart/adicionar/{userId}/{productId}/{productQuantidade}</td>
+      <td>Aumenta a quantidade do produto especificado do carrinho do usuario especificado.</td>
+   </tr>
+   <tr>
+      <td>localhost:8080/cart/diminuir/{userId}/{productId}/{productQuantidade}</td>
+      <td>Diminui a quantidade do produto especificado do carrinho do usuario especificado.</td>
+   </tr>
+</table>
+
+<br>
 
 ### Método DELETE
-[x] localhost:8080/user/{id}
- - Remove o usuário do id informado.
-[x] localhost:8080/product/{id}
- - Remove o produto do id informado.
-[x] localhost:8080/cart/{userId}/{productId}
- - Remove o produto informado do carrinho do usuário informado.
+<table>
+   <tr>
+      <td>localhost:8080/user/{id}</td>
+      <td>Remove o usuário do id informado.</td>
+   </tr>
+   <tr>
+      <td>localhost:8080/product/{id}</td>
+      <td>Remove o produto do id informado.</td>
+   </tr>
+   <tr>
+      <td>localhost:8080/cart/{userId}/{productId}</td>
+      <td>Remove o produto informado do carrinho do usuário informado.</td>
+   </tr>
+</table>
