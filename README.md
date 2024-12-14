@@ -20,3 +20,34 @@ spring.datasource.url=jdbc:mariadb://localhost:3306/gerenciadorDB?createDatabase
 ```
 spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
 ```
+
+## Consumindo a API
+#### Método GET
+[x] localhost:8080/user/{id}
+ - Retorna em json o usuário do id informado.
+[x] localhost:8080/product/{id}
+ - Retorna em json o produto do id informado.
+
+#### Método POST
+[x] localhost:8080/user
+ - Cria um usuário com base no json enviado.
+[x] localhost:8080/product
+ - Cria um produto com base no json enviado.
+
+### Método PUT
+[x] localhost:8080/user/{id}
+ - Edita o usuário com o id escolhido e com base no json enviado.
+[x] localhost:8080/product/{id}
+ - Edita o produto com o id escolhido e com base no json enviado.
+[x] localhost:8080/cart/adicionar/{userId}/{productId}/{productQuantidade}
+ - Aumenta a quantidade do produto especificado do carrinho do usuario especificado.
+[x] localhost:8080/cart/diminuir/{userId}/{productId}/{productQuantidade}
+ - Diminui a quantidade do produto especificado do carrinho do usuario especificado.
+
+### Método DELETE
+[x] localhost:8080/user/{id}
+ - Remove o usuário do id informado.
+[x] localhost:8080/product/{id}
+ - Remove o produto do id informado.
+[x] localhost:8080/cart/{userId}/{productId}
+ - Remove o produto informado do carrinho do usuário informado.
