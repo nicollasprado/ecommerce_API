@@ -23,11 +23,8 @@ spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
 
 ## Consumindo a API
 #### Método GET
-[x] localhost:8080/user/{id}
-- Retorna em json o usuário do id informado.
-<br>
-[x] localhost:8080/product/{id}<br>
-- Retorna em json o produto do id informado.<br>
+- localhost:8080/user/{id}     ->  Retorna em json o usuário do id informado.
+- localhost:8080/product/{id}  ->  Retorna em json o produto do id informado.
 
 #### Método POST
 [x] localhost:8080/user
