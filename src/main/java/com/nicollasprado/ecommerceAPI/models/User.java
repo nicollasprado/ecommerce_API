@@ -1,5 +1,6 @@
 package com.nicollasprado.ecommerceAPI.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -52,6 +53,7 @@ public class User {
 
     // Cascade define como as operaç�es feitas nas entidades repercutirao nas entidades associadas
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Cart cart;
 
 

@@ -1,5 +1,6 @@
 package com.nicollasprado.ecommerceAPI.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -38,6 +39,9 @@ public class Product {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "img_url")
+    private String imgUrl;
+
     @Column(name = "price", precision = 2, nullable = false)
     @NotNull(groups = {CreateProduct.class, UpdateProduct.class})
     private Double price;
@@ -47,12 +51,14 @@ public class Product {
     private Long quantity;
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnore
     private List<CartProducts> cartProducts = new ArrayList<CartProducts>();
 
-    public Product(String name, String description, Double price, Long quantity){
+    public Product(String name, String description, Double price, Long quantity, String imgUrl){
         this.name = name;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
+        this.imgUrl = imgUrl;
     }
 }
