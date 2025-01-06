@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Search, ShoppingCart, User } from "lucide-react";
 import Menu from "./Menu.jsx";
+import UserDropdown from "./UserDowpdown.jsx"
 
 function Header(){
     const [search, setSearch] = useState();
@@ -32,9 +33,9 @@ function Header(){
                 </ul>
             </div>
 
-            <div className="flex gap-5">
+            <div className="flex gap-4">
                 <button> <ShoppingCart size={46} /> </button>
-                <button> <User size={46} /> </button>
+                <UserDropdown />
             </div>
         </nav>
     )
