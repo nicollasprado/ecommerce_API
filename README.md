@@ -17,6 +17,7 @@ Projeto criado com objetivo de desenvolver minhas habilidades com springboot par
 ## Pré requisitos
 - [Mysql server](https://dev.mysql.com/downloads/mysql/) ou [Mariadb server](https://mariadb.org/download/?t=mariadb&p=mariadb&r=11.6.2)
 - [Java 21](https://www.oracle.com/java/technologies/downloads/#java21)
+- [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 <br>
 
