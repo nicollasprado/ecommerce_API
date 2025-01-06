@@ -84,6 +84,8 @@ spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
 }
 ```
 
+- OBS: imgUrl e description são opcionais.
+
 <br>
 
 ### Método PUT
