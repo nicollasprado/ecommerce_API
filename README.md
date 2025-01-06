@@ -79,7 +79,8 @@ spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
     "name": "Teclado",
     "description": "Teclado mecanico abnt2",
     "price": 200.00,
-    "quantity": 6
+    "quantity": 6,
+    "imgUrl": "link da imagem"
 }
 ```
 
