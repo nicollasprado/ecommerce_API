@@ -11,6 +11,7 @@ import ProductPage from "./routes/ProductPage.jsx"
 
 const client = new QueryClient();
 
+
 const router = createBrowserRouter([
     {
         element: <App />,
