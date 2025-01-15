@@ -6,7 +6,7 @@ function BuyButton(){
 
     return(
         <div className="flex gap-5">
-            <div className="bg-gray-300 w-[5em] h-[2em] flex justify-center items-center gap-4 text-2xl rounded-2xl">
+            <div className="bg-gray-400 w-[5em] h-[2em] flex justify-center items-center gap-4 text-2xl rounded-2xl">
                 <button onClick={() => setProductQt((productQt) => productQt - 1)}>-</button>
                 <p>{productQt}</p>
                 <button onClick={() => setProductQt((productQt) => productQt + 1)}>+</button>

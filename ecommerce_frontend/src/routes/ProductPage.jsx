@@ -41,9 +41,9 @@ function ProductPage() {
                     <Title>{data.name}</Title>
                     <div className="flex flex-col gap-6">
                         <div>
-                            <Price currentPrice={"R$ " + data.price.toFixed(2) + ",00"}
-                                   oldPrice={"R$ " + (data.price * 1.2).toFixed(2) + ",00"}
-                                   installments={`em até 12x de R$ ${installments},00 sem juros`} />
+                            <Price currentPrice={"R$ " + data.price.toFixed(2)}
+                                   oldPrice={"R$ " + (data.price * 1.2).toFixed(2)}
+                                   installments={`em até 12x de R$ ${installments} sem juros`} />
                         </div>
                         <div className="pb-8 border-b-2 border-black">
                             <BuyButton />
