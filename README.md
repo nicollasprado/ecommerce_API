@@ -22,8 +22,9 @@ Projeto criado com objetivo de desenvolver minhas habilidades com springboot par
 <br>
 
 ## Configurações necessárias
-### src/main/resources/application.properties
-- Modificar "gerenciadorDB" para o nome do banco de dados criado na sua máquina.
+### Configurações do banco de dados
+No arquivo **application.properties** que está em **src/main/resources**:
+
 - Modificar "mariadb" para "mysql" caso use esse banco de dados.
 ```
 spring.datasource.url=jdbc:mariadb://localhost:3306/gerenciadorDB?createDatabaseIfNotExist=true
@@ -36,9 +37,12 @@ spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
 <br>
 
 ### Instalar dependências do frontend:
+- Na pasta que o projeto está utilize o seguinte comando:
 ```
- cd Desktop/Study/ecommerce_API/ecommerce_frontend; npm install
+ cd ecommerce_API/ecommerce_frontend; npm install
 ```
+
+<br>
 
 ## Consumindo a API
 #### Método GET
