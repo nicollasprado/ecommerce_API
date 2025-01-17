@@ -10,7 +10,7 @@
 
 
 ## Objetivo
-Projeto criado com objetivo de desenvolver minhas habilidades com springboot para criação de apis restful.
+Projeto criado com objetivo de desenvolver minhas habilidades com springboot para criação de apis restful e Reactjs para criação de páginas web.
 
 <br>
 
@@ -34,6 +34,11 @@ spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
 ```
 
 <br>
+
+### Instalar dependências do frontend:
+```
+ cd Desktop/Study/ecommerce_API/ecommerce_frontend; npm install
+```
 
 ## Consumindo a API
 #### Método GET
