@@ -2,6 +2,7 @@ package com.nicollasprado.ecommerceAPI.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.nicollasprado.ecommerceAPI.models.enums.UserRole;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -9,9 +10,15 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 // Entidade = tabela sql
@@ -21,7 +28,8 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class) // Adiciona listerner de auditing para a entidade (nesse caso utilizado para registrar a data de criacao do user)
-public class User {
+// UserDetails serve pra identificar classe que sera autenticado via spring security
+public class User implements UserDetails {
     public interface CreateUser {}
     public interface UpdateUser {}
 
@@ -30,7 +38,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // IDENTITY = Os valores ser�o gerados pela coluna de auto incremento do banco, logo, cada registro no
-    // banco ser� um novo valor
+    // banco sera um novo valor
     @Column(name = "id", unique = true)
     private Long id;
 
@@ -42,14 +50,18 @@ public class User {
     private String username;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // Torna a senha WRITE ONLY (apenas escrita), aumentando a segurança
-    @Column(name = "password", length = 50, nullable = false)
+    @Column(name = "password", nullable = false)
     @NotNull(groups = {CreateUser.class, UpdateUser.class})
     @NotEmpty(groups = {CreateUser.class, UpdateUser.class})
     @Size(groups = {CreateUser.class, UpdateUser.class}, min = 8, max = 50)
     private String password;
 
-    @Column(name = "creation_date", insertable = false, updatable = false, nullable = false)
+    @CreatedDate
+    @Column(name = "creation_date", updatable = false)
     private LocalDateTime createdAt;
+
+    @Column(name = "role", nullable = false)
+    private UserRole role;
 
     // Cascade define como as operaç�es feitas nas entidades repercutirao nas entidades associadas
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
@@ -57,10 +69,55 @@ public class User {
     private Cart cart;
 
 
-
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+        this.role = UserRole.USER;
+    }
+
+    public User(String username, String password, UserRole role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
+
+    // Spring security
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if(this.role == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
 
