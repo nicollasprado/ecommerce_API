@@ -1,8 +1,10 @@
 package com.nicollasprado.ecommerceAPI.controllers;
 
+import com.nicollasprado.ecommerceAPI.Security.TokenService;
 import com.nicollasprado.ecommerceAPI.models.Cart;
 import com.nicollasprado.ecommerceAPI.models.User;
 import com.nicollasprado.ecommerceAPI.models.dto.AuthenticationDTO;
+import com.nicollasprado.ecommerceAPI.models.dto.LoginResponseDTO;
 import com.nicollasprado.ecommerceAPI.models.dto.RegisterDTO;
 import com.nicollasprado.ecommerceAPI.repositories.UserRepository;
 import jakarta.transaction.Transactional;
@@ -31,12 +33,17 @@ public class AuthenticationController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping("/login")
-    public ResponseEntity<Void> login(@RequestBody @Valid AuthenticationDTO data){
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid AuthenticationDTO data){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.username(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
-        return ResponseEntity.ok().build();
+        var token = tokenService.generateToken((User) auth.getPrincipal());
+
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
