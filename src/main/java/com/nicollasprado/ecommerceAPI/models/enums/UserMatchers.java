@@ -8,7 +8,6 @@ import lombok.Getter;
 public enum UserMatchers {
     // POST endpoints
     USER_POST("/user"),
-    LOGIN_POST("/auth/login"),
 
     // GET endpoints
     PRODUCT_GET("/product/*"),
@@ -29,7 +28,7 @@ public enum UserMatchers {
     private final String matcher;
 
     public static String[] getUserPostEndpoints(){
-        return new String[]{USER_POST.getMatcher(), LOGIN_POST.getMatcher()};
+        return new String[]{USER_POST.getMatcher()};
     }
 
     public static String[] getUserGetEndpoints(){

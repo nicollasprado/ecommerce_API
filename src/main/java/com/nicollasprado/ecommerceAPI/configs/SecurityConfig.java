@@ -29,7 +29,8 @@ public class SecurityConfig {
 
     // Define as rotas publicar
     private static final String[] PUBLIC_MATCHERS = {
-            "/"
+            "/",
+            "/auth/login"
     };
 
     @Bean // Cria um objeto a partir de um metodo
@@ -49,6 +50,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, AdminMatchers.getAdminGetEndpoints()).hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, AdminMatchers.getAdminPutEndpoints()).hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, AdminMatchers.getAdminDeleteEndpoints()).hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, PUBLIC_MATCHERS).permitAll()
                         .anyRequest().authenticated() // para qualquer outro request so tem que estar autenticado
                 )
                 // roda o securityFilter antes do UsernamePasswordAuthenticationFilter
